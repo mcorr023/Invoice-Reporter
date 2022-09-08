@@ -4,9 +4,12 @@ import re
 import numpy as np
 
 file = '2022_01_22.pdf'
-data = tb.read_pdf(file, area = (80, 70, 600, 115), pages = '1')
-
+data = tb.read_pdf(file, area = (70, 70, 600, 115), pages = '1')
 #print(data)
 
-dataArr = np.array(data)
-print (dataArr)
+dataRaw = np.array(data[0])
+#print(dataRaw)
+
+dataArr = np.fromiter(dataRaw, dtype= int)
+print(dataArr)
+
