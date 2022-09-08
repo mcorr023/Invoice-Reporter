@@ -16,19 +16,20 @@ def report(arr1, arr2):
     for i in arr1:
         for j in arr2:
             if i == j :
-                completed = np.append(completed, [i])
+                completed = np.append(completed, i)
 
     np.sort(completed)
+    completed = completed.astype(int)
 
     print("Completed: ", completed)
     print("Duplicates: ", duplicates)
     print("Extras: ", extras)
     print("Missing: ", missing)
 
-test1 = np.array(['111', '222', '333', '444', '555', '666', '777'])
-test2 = np.array(['111', '222', '222', '444', '888', '999', '444'])
+#test1 = np.array([111, 222, 333, 444, 555, 666, 777])
+#test2 = np.array([111, 222, 222, 444, 888, 999, 444])
 
-report(test1,test2)
+#report(test1,test2)
 
 
 
