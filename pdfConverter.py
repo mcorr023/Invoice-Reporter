@@ -15,7 +15,7 @@ def importReport():
         Text = PageObj.extractText() 
         match = re.search(bstring, Text)
         if(match):
-            data = tb.read_pdf(file, area = (70, 70, 600, 115), pages = str(i))
+            data = tb.read_pdf(file, area = (70, 70, 600, 115), pages = str(i+1))
             dataRaw = np.array(data[0])
             dataArr = np.fromiter(dataRaw, dtype= int)
     return dataArr
