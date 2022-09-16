@@ -30,12 +30,12 @@ def open_file():
         #text box
         text_box = tk.Text(root, height=10, width=50, padx=15, pady=15)
         text_box.insert(1.0, pdf_report)
-        text_box.tag_configure("center", justify="center")
-        text_box.tag_add("center", 1.0, "end")
+        text_box.tag_configure("left", justify="left")
+        text_box.tag_add("left", 1.0, "end")
         text_box.grid(column=1, row=3)
 
         scrollbar = ttk.Scrollbar(root, orient='vertical', command = text_box.yview)
-        scrollbar.grid(row=0, column=1, sticky=tk.NS)
+        scrollbar.grid(row=3, column=3, sticky=tk.NS)
         text_box['yscrollcommand'] = scrollbar.set
 
         browse_text.set("Browse")
