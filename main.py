@@ -1,4 +1,4 @@
-
+from tkinter import ttk
 import tkinter as tk
 import invoiceReporter
 import pdfConverter
@@ -33,6 +33,10 @@ def open_file():
         text_box.tag_configure("center", justify="center")
         text_box.tag_add("center", 1.0, "end")
         text_box.grid(column=1, row=3)
+
+        scrollbar = ttk.Scrollbar(root, orient='vertical', command = text_box.yview)
+        scrollbar.grid(row=0, column=1, sticky=tk.NS)
+        text_box['yscrollcommand'] = scrollbar.set
 
         browse_text.set("Browse")
 
