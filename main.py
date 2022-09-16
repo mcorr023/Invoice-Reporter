@@ -1,22 +1,50 @@
+
+import tkinter as tk
 import invoiceReporter
 import pdfConverter
-from kivy.app import App
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.label import Label
-from kivy.uix.image import Image
-from kivy.uix.button import Button
-from kivy.uix.textinput import TextInput 
+from PIL import Image, ImageTk
+from tkinter.filedialog import askopenfile
 
-class InvoiceReportApp(App):
-    def build(self):
-        self.window = GridLayout()
-        self.window.cols = 2
-        self.window.add_widget(Image("icon.png"))
+root = tk.Tk()
 
-        return self.window
+canvas = tk.Canvas(root, width=600, height=300)
+canvas.grid(columnspan=3, rowspan=3)
 
-if __name__ == "__main__":
-    InvoiceReportApp().run()
+#logo
+logo = Image.open('icon.png')
+logo = ImageTk.PhotoImage(logo)
+logo_label = tk.Label(image=logo)
+logo_label.image = logo
+logo_label.grid(column=1, row=0)
 
+#instructions
+instructions = tk.Label(root, text="Select PDF file", font="Raleway")
+instructions.grid(columnspan=3, column=0, row=1)
 
-#invoiceReporter.report(pdfConverter.importReport(), pdfConverter.importInvoices())
+def open_file():
+    browse_text.set("loading...")
+    file = askopenfile(parent=root, mode='rb', title="Choose a PDF file", filetypes=[("Pdf file", "*.pdf")])
+    if file:
+        pdf_report = invoiceReporter.report(pdfConverter.importReport(file), pdfConverter.importInvoices(file))
+
+        #text box
+        text_box = tk.Text(root, height=10, width=50, padx=15, pady=15)
+        text_box.insert(1.0, pdf_report)
+        text_box.tag_configure("center", justify="center")
+        text_box.tag_add("center", 1.0, "end")
+        text_box.grid(column=1, row=3)
+
+        browse_text.set("Browse")
+
+#browse button
+browse_text = tk.StringVar()
+browse_btn = tk.Button(root, textvariable=browse_text, command=lambda:open_file(), font="Raleway", bg="#20bebe", fg="white", height=2, width=15)
+browse_text.set("Browse")
+browse_btn.grid(column=1, row=2)
+
+canvas = tk.Canvas(root, width=600, height=250)
+canvas.grid(columnspan=3)
+
+root.mainloop()
+
+        

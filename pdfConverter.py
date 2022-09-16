@@ -3,13 +3,13 @@ import PyPDF2 as pypdf
 import re
 import numpy as np
 
-file = '2022_01_22.pdf'
-object = pypdf.PdfFileReader(file)
-NumPages = object.getNumPages()
 astring = "INVOICE: "
 bstring = "Invoice Report"
 
-def importReport():
+def importReport(file):
+    object = pypdf.PdfFileReader(file)
+    NumPages = object.getNumPages()
+    
     for i in range(0,NumPages):
         PageObj = object.getPage(i)
         Text = PageObj.extractText() 
@@ -21,7 +21,9 @@ def importReport():
     return dataArr
 
 
-def importInvoices():
+def importInvoices(file):
+    object = pypdf.PdfFileReader(file)
+    NumPages = object.getNumPages()
     invoiceArr = np.empty([0,2])
 
     for i in range(1, NumPages):

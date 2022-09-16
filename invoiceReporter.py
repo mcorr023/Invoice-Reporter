@@ -23,10 +23,12 @@ def report(arr1, arr2):
     completed = convert2dArrays.convert2d(arr2, completed)
     extras = convert2dArrays.convert2d(arr2, extras)
 
-    print("Completed: \n", completed)
-    print("Duplicates: \n", duplicates)
-    print("Extras: \n", extras)
-    print("Missing: \n", missing)
+    str1 = "Completed: \n" + str(completed)
+    str2 = "\nDuplicates: \n" + str(duplicates)
+    str3 = "\nExtras: \n" + str(extras)
+    str4 = "\nMissing: \n"+ str(missing)
+
+    return str1 + str2 + str3 + str4 
 
 # test1 = np.array([111, 222, 333, 444, 555, 666, 777])
 # test2 = np.array([[111, 2], [222, 3], [222, 4], [444, 5], [888, 6], [999, 7], [444, 8]])
